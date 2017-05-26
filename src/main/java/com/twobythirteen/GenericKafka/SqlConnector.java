@@ -40,7 +40,7 @@ public class SqlConnector {
 		String sql = "SELECT column_name\n" +
 				"FROM information_schema.columns\n" +
 				"WHERE table_name = \"" + tableName + "\"\n" +
-				"AND table_schema = \"\"" + tableSchema + "\"\"";
+				"AND table_schema = \"" + tableSchema + "\"";
 
 		ArrayList<String> columns = new ArrayList<String>();
 
