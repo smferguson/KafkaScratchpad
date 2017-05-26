@@ -75,9 +75,7 @@ public class GenericConsumer {
 				for (ConsumerRecord<String, String> record : records) {
 					JSONObject rec = new JSONObject(record.value());
 					String type = rec.getString("type");
-					if (type.equalsIgnoreCase("bootstrap-insert") &&
-							(rec.getString("table").equalsIgnoreCase("User") ||
-									rec.getString("table").equalsIgnoreCase("UserRole"))) {
+					if (type.equalsIgnoreCase("bootstrap-insert")) {
 						String table = rec.getString("table");
 						kafkaData.put(table, kafkaData.getOrDefault(table, new JSONArray()).put(rec));
 					}
@@ -127,6 +125,7 @@ public class GenericConsumer {
 				tableData.clear();
 				it.remove();
 			}
+			LOGGER.info("done iterating over kafka data");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
